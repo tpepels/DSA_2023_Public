@@ -36,9 +36,11 @@ public class SubSequence {
     public static void main(String[] args) {
 
         String[][] S = { { "cc", "aa" }, { "bb", "aa" }, { "ee", "pp" } };
+
         String trueSequence = "ccaapp";
         System.out.println(String.format("is %s a subsequence?: %s", trueSequence,
                 isSequence(S, trueSequence)));
+
         String falseSequene = "aaccll";
         System.out.println(String.format("is %s a subsequence?: %s", falseSequene,
                 isSequence(S, falseSequene)));
