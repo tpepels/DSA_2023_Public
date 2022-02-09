@@ -47,10 +47,10 @@ public class BinarySearch {
     // 2. Worst case
     // 3. Testen met gesorteerde input
     public static void main(String[] args) {
-        int nExperiments = 100000;
+        int nExperiments = 1000000;
         int nArrays = 20;
 
-        int[] inputSizes = { 100, 250, 500, 750, 1000, 2500, 5000, 7500, 10000, 50000, 75000, 100000, 250000, 500000,
+        int[] inputSizes = { 1000, 2500, 5000, 7500, 10000, 25000, 50000, 75000, 100000, 250000, 500000,
                 750000, 1000000, 2500000, 5000000, 7500000, 10000000, 20000000 };
 
         Random r = new Random();

@@ -2,26 +2,29 @@
 public class SubSequence {
     public static boolean isSequence(String[][] S, String seq) {
 
-        int n = S.length; // The number of arrays in S
+        // The first dependence on the input:
+        int k = S.length; // * The number of arrays in S
 
-        int compIdx = 0;
+        int compIdx = 0; // The start of the substring of seq that we will compare to the strings in S
 
-        for (int i = 0; i < n; i++) { // n steps
+        for (int i = 0; i < k; i++) { // * k steps
 
-            int k = S[i].length; // Not assuming that every array in S has the same length
+            // * The second dependence on the input. i.e. The length of each array
+            int n = S[i].length; // Not assuming that every array in S has the same length
+
             boolean match = false;
 
-            for (int j = 0; j < k; j++) { // k steps
+            for (int j = 0; j < n; j++) { // * n * k steps
 
-                int slen = S[i][j].length(); // Not assuming that every string has the same length
+                int g = S[i][j].length(); // Not assuming that every string has the same length
 
                 // The values we're going to compare
-                String subSeq = seq.substring(compIdx, compIdx + slen);
+                String subSeq = seq.substring(compIdx, compIdx + g); // ? O(g) What is the complexity of this method?
                 String SVal = S[i][j];
 
-                if (SVal.equals(subSeq)) { // sLen comparisons (we could take this into consideration as the complexity)
+                if (SVal.equals(subSeq)) { // ? What is the complexity of this method? O(g)
                     match = true;
-                    compIdx += slen; // The start of the next piece of the sequence to start comparing
+                    compIdx += g; // The start of the next piece of the sequence to start comparing
                     break;
                 }
 
