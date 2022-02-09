@@ -5,13 +5,15 @@ public class SubSequence {
         int n = S.length; // The number of arrays in S
 
         int compIdx = 0;
+
         for (int i = 0; i < n; i++) { // n steps
 
-            int k = S[0].length; // Not assuming that every array in S has the same length
+            int k = S[i].length; // Not assuming that every array in S has the same length
             boolean match = false;
+
             for (int j = 0; j < k; j++) { // k steps
 
-                int slen = S[0][0].length(); // Not assuming that every string has the same length
+                int slen = S[i][j].length(); // Not assuming that every string has the same length
 
                 // The values we're going to compare
                 String subSeq = seq.substring(compIdx, compIdx + slen);

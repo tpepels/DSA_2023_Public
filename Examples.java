@@ -9,7 +9,6 @@ public class Examples {
 
         for (int i = 3; i < 1000; i++)
             sum++;
-
         return sum;
     }
 
@@ -33,7 +32,7 @@ public class Examples {
      * 
      * 
      * This function's complexity:
-     * O(n^5)
+     * O(n^2)
      */
     int Example2(int n) {
         /*
@@ -49,20 +48,15 @@ public class Examples {
          */
 
         int sum = 0;
-        for (int i = 0; i < n * n * n; i++) // n^3
+        for (int i = 0; i < n; i++) // n
             for (int j = 0; j < i; j++)
-                sum++; // (1 + 2 + 3 + ... + n) * n^3
+                sum++; // (1 + 2 + 3 + ... + n)
 
         /*
          * Multiplying exponents:
-         * (1 + 2 + 3 + ... + n) * n^3
-         * --> n(n-1)/2 * n^3
-         * --> 1/2 * n^4 * (n-1)
+         * (1 + 2 + 3 + ... + n)
+         * --> n(n-1)/2
          * 
-         * Drop lower order terms:
-         * n^4 * n = n^5
-         * 
-         * a^m * a^n = a^(n+m)
          */
         return sum;
     }
@@ -93,7 +87,7 @@ public class Examples {
         if (n < 1) // 1 ( n calls )
             return n;
 
-        if (n < 10)
+        if (n < 100)
             return Example3(n / m, m); // Note that m does not change..
         else
             return Example3(n - 1, m); // n
