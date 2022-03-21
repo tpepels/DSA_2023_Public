@@ -1,3 +1,5 @@
+package tutorial_2;
+
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -81,8 +83,8 @@ public class BinarySearch {
                 // Select a random value from the random array
                 int toFind = array[r.nextInt(array.length)];
                 // Let's search!
-                indexOfBrute(array, toFind);
-                // indexOfBinSearch(array, toFind);
+                // indexOfBrute(array, toFind);
+                indexOfBinSearch(array, toFind);
             }
 
             long end = System.currentTimeMillis();

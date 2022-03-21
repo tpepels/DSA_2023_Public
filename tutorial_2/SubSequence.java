@@ -1,3 +1,4 @@
+package tutorial_2;
 
 public class SubSequence {
     public static boolean isSequence(String[][] S, String seq) {

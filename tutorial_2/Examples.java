@@ -1,3 +1,5 @@
+package tutorial_2;
+
 public class Examples {
 
     /**
