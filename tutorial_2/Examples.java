@@ -21,23 +21,25 @@ public class Examples {
      */
     int Example2(int n) {
         // ! The sum of the first n integers is:
-        // ! S = n(n+1) / 2
+        // ! S = n(n-1) / 2
         //
-        // * Note the n(n+1) makes this function O(n^2)
+        // * Note the n(n-1) makes this function O(n^2)
         //
         // ? Strangely, however;
         // ? 1 + 2 + 3 + 4 + ... = -1/12
         // ? More info: (https://youtu.be/w-I6XTVZXww)
 
         int sum = 0;
-        for (int i = 0; i < n; i++) // * n
-            for (int j = 0; j < i; j++)
-                sum++; // * (1 + 2 + 3 + ... + n)
-
+        for (int i = 0; i < n; i++) { // * n
+            if (i > 100) {
+                for (int j = 0; j < i; j++)
+                    sum++; // * (1 + 2 + 3 + ... + 1/2 n)
+            }
+        }
         /*
          * Multiplying exponents:
          * (1 + 2 + 3 + ... + n)
-         * --> n(n-1)/2
+         * --> n(n+1)/4
          * 
          */
         return sum;
