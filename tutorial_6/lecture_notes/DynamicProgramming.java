@@ -38,7 +38,6 @@ public class DynamicProgramming {
 
         // Returns the maximum value that can be put in a knapsack
         static int recursive_knapsack(int[] values, int[] weights, int capacity, int n) {
-            callCount++;
             /* Base case 0 items left or knapsack is full */
             if (n == 0 || capacity == 0)
                 return 0;
@@ -48,8 +47,12 @@ public class DynamicProgramming {
              * either include or exclude the item.
              */
             if (weights[n - 1] <= capacity) {
-                return Math.max(values[n - 1] + recursive_knapsack(values, weights, capacity - weights[n - 1], n - 1),
-                        recursive_knapsack(values, weights, capacity, n - 1));
+                callCount++;
+                // Otherwise, compute the maximum value by including or excluding the item
+                int include = values[n - 1] + recursive_knapsack(values, weights, capacity - weights[n - 1], n - 1);
+                int exclude = recursive_knapsack(values, weights, capacity, n - 1);
+
+                return Math.max(include, exclude);
             }
 
             /*
@@ -62,18 +65,20 @@ public class DynamicProgramming {
         // Recursive function to compute the maximum value that can be obtained by
         // including items in the knapsack
         private static int knapsack(int[] values, int[] weights, int capacity, int n) {
-            callCount++;
             // If the capacity is 0 or there are no more items, return 0
             if (capacity == 0 || n == 0)
                 return 0;
             // If the solution has already been computed, return it
-            if (table[capacity - 1][n - 1] != -1)
+            if (table[capacity - 1][n - 1] != -1) {
+                System.out.println("Memorized: " + table[capacity - 1][n - 1] + " capacity: " + capacity + " n: " + n);
                 return table[capacity - 1][n - 1];
+            }
 
             // If the weight of the nth item is greater than the capacity, skip it
             if (weights[n - 1] > capacity)
                 return knapsack(values, weights, capacity, n - 1);
 
+            callCount++;
             // Otherwise, compute the maximum value by including or excluding the item
             int include = values[n - 1] + knapsack(values, weights, capacity - weights[n - 1], n - 1);
             int exclude = knapsack(values, weights, capacity, n - 1);
@@ -85,22 +90,20 @@ public class DynamicProgramming {
         }
 
         public static void main(String[] args) { // Initialize the table with -1
-            int capacity = 6;
-            int n = 5;
-
-            callCount = 0;
-            table = new int[capacity][n];
-
-            for (int[] row : table)
-                Arrays.fill(row, -1);
+            int capacity = 12;
 
             // Define the values and weights of the items
             int[] values = { 60, 100, 120, 180, 200 };
             int[] weights = { 1, 2, 3, 4, 5 };
 
+            table = new int[capacity][weights.length];
+            for (int[] row : table)
+                Arrays.fill(row, -1);
+
+            callCount = 0;
             // Compute and print the maximum value that can be obtained
-            // int result = knapsack(values, weights, capacity, n);
-            int result = recursive_knapsack(values, weights, capacity, n);
+            int result = knapsack(values, weights, capacity, weights.length);
+            // int result = recursive_knapsack(values, weights, capacity, weights.length);
             System.out.println("Found result: " + result);
             System.out.println("Recursive calls: " + callCount);
 
