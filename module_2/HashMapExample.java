@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class HashMapExample {
     public static void main(String[] args) {
+        System.out.println("");
+        System.out.println("");
         // Creating a HashMap
         HashMap<String, Integer> map = new HashMap<>();
 
@@ -15,12 +17,15 @@ public class HashMapExample {
 
         // Displaying the entire map
         System.out.println("Initial map: " + map);
+        System.out.println("Size of the map: " + map.size());
+        System.out.println("");
 
         // Checking if a key exists in the map
         String keyToCheck = "Alice";
         if (map.containsKey(keyToCheck)) {
             System.out.println(keyToCheck + " is in the map and has age " + map.get(keyToCheck));
         }
+        System.out.println("");
 
         // Iterating over entries of the map
         System.out.println("Iterating over the map:");
@@ -29,6 +34,7 @@ public class HashMapExample {
             Integer value = entry.getValue();
             System.out.println(key + " => " + value);
         }
+        System.out.println("");
 
         // Removing an entry by key
         String keyToRemove = "Charlie";
@@ -39,5 +45,6 @@ public class HashMapExample {
 
         // Displaying the map after removal
         System.out.println("Map after removal of " + keyToRemove + ": " + map);
+        System.out.println("");
     }
 }

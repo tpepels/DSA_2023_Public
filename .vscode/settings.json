@@ -1,7 +1,7 @@
 {
-    "editor.tokenColorCustomizations": {
-        "comments": "",
-        "textMateRules": []
-    },
-    "java.debug.settings.onBuildFailureProceed": true
+  "editor.tokenColorCustomizations": {
+    "comments": "",
+    "textMateRules": []
+  },
+  "java.debug.settings.onBuildFailureProceed": true
 }
