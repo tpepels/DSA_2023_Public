@@ -52,8 +52,7 @@ public class BinarySearch {
         int nExperiments = 1000000;
         int nArrays = 20;
 
-        int[] inputSizes = { 1000, 2500, 5000, 7500, 10000, 25000, 50000, 75000, 100000, 250000, 500000,
-                750000, 1000000, 2500000, 5000000, 7500000, 10000000, 20000000 };
+        int[] inputSizes = { 1000, 2500, 5000, 7500, 10000, 25000, 50000, 75000, 100000, 150000, 200000 };
 
         Random r = new Random();
         long[] timings = new long[inputSizes.length];
@@ -83,15 +82,15 @@ public class BinarySearch {
                 // Select a random value from the random array
                 int toFind = array[r.nextInt(array.length)];
                 // Let's search!
-                indexOfBrute(array, toFind);
-                // indexOfBinSearch(array, toFind);
+                // indexOfBrute(array, toFind);
+                indexOfBinSearch(array, toFind);
             }
 
             long end = System.currentTimeMillis();
 
             long totTime = end - start;
             timings[j] = totTime;
-            System.out.println(inputSizes[j] + "," + totTime);
+            System.out.println(inputSizes[j] + "," + totTime + "ms");
         }
         System.out.println();
         /*

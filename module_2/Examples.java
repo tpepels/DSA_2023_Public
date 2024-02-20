@@ -3,6 +3,20 @@ package module_2;
 public class Examples {
 
     /**
+     * Best case: O(1) (target is the first element)
+     * Worst case: O(n) (target is the last element)
+     * Expected case: O(n) (target is in the middle, still linear..)
+     */
+    public static int linearSearch(int[] array, int target) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == target) {
+                return i; // Target found
+            }
+        }
+        return -1; // Target not found
+    }
+
+    /**
      * This function's complexity:
      * O(1) i.e. the runtime of the function is not dependent on its input
      */
