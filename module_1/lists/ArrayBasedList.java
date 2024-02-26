@@ -69,6 +69,8 @@ public class ArrayBasedList<E> implements ListADT<E> {
             for (int i = 0; i < size - 1; i++) {
                 elements[i] = elements[i + 1];
             }
+
+            elements[size - 1] = null; // ensures the last element is set to null.
             size = size - 1; // note that we could also set the last element to null for memory optimization
 
             return firstElement;
