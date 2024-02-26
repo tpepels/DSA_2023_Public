@@ -66,7 +66,7 @@ public class ArrayBasedList<E> implements ListADT<E> {
             E firstElement = (E) elements[0]; // read the element before removing it
 
             // shift all the elements one position to the left
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size - 1; i++) {
                 elements[i] = elements[i + 1];
             }
             size = size - 1; // note that we could also set the last element to null for memory optimization
