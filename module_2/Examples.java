@@ -47,7 +47,7 @@ public class Examples {
         for (int i = 0; i < n; i++) { // * n
             if (i > 100) {
                 for (int j = 0; j < i; j++)
-                    sum++; // * (1 + 2 + 3 + ... + 1/2 n)
+                    sum++; // * (1 + 2 + 3 + ... + n)
             }
         }
         /*
