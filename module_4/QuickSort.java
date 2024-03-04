@@ -43,15 +43,15 @@ public class QuickSort<E> {
         while (i <= j) {
             // If the current value from the left list is smaller than the pivot
             // element then get the next element from the left list
-            // while (arr[i] < pivot) { // ? How can we compare two unknown types??
-            while (comp.compare(arr[i], pivot) < 0) { // if first < second parameter,
+            while (arr[i] < pivot) { // ? How can we compare two unknown types??
+                // while (comp.compare(arr[i], pivot) < 0) { // if first < second parameter,
                 // comp returns < 0
                 i++;
             }
             // If the current value from the right list is larger than the pivot
             // element then get the next element from the right list
-            // while (arr[j] > pivot) { // ? How can we compare two unknown types??
-            while (comp.compare(arr[j], pivot) > 0) { // if first > second parameter,
+            while (arr[j] > pivot) { // ? How can we compare two unknown types??
+                // while (comp.compare(arr[j], pivot) > 0) { // if first > second parameter,
                 // comp returns > 0
                 j--;
             }
@@ -104,8 +104,8 @@ public class QuickSort<E> {
 
     private static <E> boolean validate(E[] numbers, Comparator<E> comp) {
         for (int i = 0; i < numbers.length - 1; i++) {
-            // if (numbers[i] > numbers[i + 1]) {
-            if (comp.compare(numbers[i], numbers[i + 1]) > 0) {
+            if (numbers[i] > numbers[i + 1]) {
+                // if (comp.compare(numbers[i], numbers[i + 1]) > 0) {
                 return false;
             }
         }
