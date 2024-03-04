@@ -4,11 +4,13 @@ def is_sorted(lst):
 
 
 def generate_permutations(lst, start=0, result=[]):
+
     if start == len(lst) - 1:
         if is_sorted(lst):
             print("Sorted permutation found:", lst)
             result.append(lst.copy())  # Copy the sorted permutation to result
             return True
+
     for i in range(start, len(lst)):
         # Swap the current index with the start
         lst[start], lst[i] = lst[i], lst[start]
