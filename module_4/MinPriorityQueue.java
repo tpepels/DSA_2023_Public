@@ -1,6 +1,7 @@
 package module_4;
 
 public class MinPriorityQueue {
+
     private int[] heap; // Array representation of the heap
     private int size; // Number of elements currently in the heap
     private int capacity; // Maximum number of elements that can be stored in the heap
