@@ -44,7 +44,7 @@ public class QuickSort<E> {
             // If the current value from the left list is smaller than the pivot
             // element then get the next element from the left list
             while (arr[i] < pivot) { // ? How can we compare two unknown types??
-                // while (comp.compare(arr[i], pivot) < 0) { // if first < second parameter,
+                while (comp.compare(arr[i], pivot) < 0) { // if first < second parameter,
                 // comp returns < 0
                 i++;
             }
