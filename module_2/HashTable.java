@@ -1,4 +1,4 @@
-package module_4;
+package module_2;
 
 public class HashTable {
 
