@@ -189,22 +189,13 @@ public class SingleLinkedList<E> implements ListADT<E> {
      * @return the String representation of the list
      */
     private String createStringForList(Node<E> currentNode) {
-        if (currentNode == null) { // Base case: if the list is empty, the String representation is a pointer to
-                                   // null
-            return " -> null";
-        } else {
-            return " -> " + currentNode.getElement() + createStringForList(currentNode.getNext()); // Recursive call: if
-                                                                                                   // the list is not
-                                                                                                   // empty, we crate
-                                                                                                   // the string for it,
-                                                                                                   // reading the value
-                                                                                                   // of the element and
-                                                                                                   // appending the
-                                                                                                   // string obtained
-                                                                                                   // for the list
-                                                                                                   // staring from the
-                                                                                                   // next node
+        if (currentNode == null) { // Base case: if the list is empty, the String representation is a pointer to null
+            return "null";
         }
+
+        // Recursive call: if the list is not empty, we crate the string for it, reading the value of the element and
+        // appending the string obtained for the list staring from the next node
+        return currentNode.getElement() + " → " + createStringForList(currentNode.getNext());
     }
 
     @Override
