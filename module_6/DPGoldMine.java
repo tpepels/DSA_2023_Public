@@ -43,7 +43,8 @@ public class DPGoldMine {
         int lowerDiagonal = collect(mine, r + 1, c + 1, n, m, dp);
 
         // Store the best answer in dp matrix and return.
-        return dp[r][c] = mine[r][c] + Math.max(Math.max(upperDiagonal, straight), lowerDiagonal);
+        dp[r][c] = mine[r][c] + Math.max(Math.max(upperDiagonal, straight), lowerDiagonal);
+        return dp[r][c];
     }
 
     public static int maxGoldCollected(int[][] mine, int n, int m, int startRow) {
