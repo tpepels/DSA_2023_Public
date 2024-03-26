@@ -44,6 +44,7 @@ public class DPGoldMine {
 
         // Store the best answer in dp matrix and return.
         dp[r][c] = mine[r][c] + Math.max(Math.max(upperDiagonal, straight), lowerDiagonal);
+
         return dp[r][c];
     }
 
@@ -60,6 +61,18 @@ public class DPGoldMine {
         }
 
         // Recursive function call for ith row.
-        return collect(mine, startRow, 0, n, m, dp);
+        var result = collect(mine, startRow, 0, n, m, dp);
+        // Print the dp matrix, making sure to align the columns with single digits.
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j <= m; j++) {
+                if (dp[i][j] < 10 && dp[i][j] >= 0) {
+                    System.out.print(" ");
+                }
+                System.out.print(dp[i][j] + "  ");
+            }
+            System.out.println();
+        }
+
+        return result;
     }
 }
