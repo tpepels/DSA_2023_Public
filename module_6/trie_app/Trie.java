@@ -1,3 +1,5 @@
+package trie_app;
+
 /**
  * The Trie class represents a trie (prefix tree) data structure
  * that provides efficient storage and retrieval of strings.
@@ -7,12 +9,14 @@ public class Trie {
      * The root node of the trie.
      */
     protected TrieNode root;
+    private int size;
 
     /**
      * Constructor that initializes the trie with a root node.
      */
     public Trie() {
         root = new TrieNode();
+        size = 0;
     }
 
     /**
@@ -29,6 +33,7 @@ public class Trie {
             if (node.children[c - 'a'] == null) {
                 // If the child node doesn't exist, create a new TrieNode at this index
                 node.children[c - 'a'] = new TrieNode();
+                size++;
             }
             // Move to the child node
             node = node.children[c - 'a'];
@@ -80,6 +85,10 @@ public class Trie {
         }
         // If we reach this point, it means we've found the prefix in the trie
         return true;
+    }
+
+    public int size() {
+        return size;
     }
 }
 

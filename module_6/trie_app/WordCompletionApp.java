@@ -1,3 +1,5 @@
+package trie_app;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -8,7 +10,8 @@ public class WordCompletionApp {
     public static void main(String[] args) {
         ExtendedTrie trie = new ExtendedTrie();
         loadWordsIntoTrie(trie, "module_6/words.txt");
-
+        // Print the number of nodes in the trie
+        System.out.println("Number of nodes in the trie: " + String.format("%,d", trie.size()));
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -37,14 +40,20 @@ public class WordCompletionApp {
     }
 
     private static void loadWordsIntoTrie(ExtendedTrie trie, String fileName) {
+        int lines = 0, characters = 0;
         try {
             Scanner fileScanner = new Scanner(new File(fileName));
+
             while (fileScanner.hasNextLine()) {
+                lines++;
                 String word = fileScanner.nextLine().toLowerCase();
                 word = word.replaceAll("[^a-z]", ""); // Remove non-alphabetic characters
                 trie.insert(word);
+                characters += word.length();
             }
             fileScanner.close();
+            System.err.println("Loaded " + String.format("%,d", lines) + " words into the trie.");
+            System.err.println("Total characters: " + String.format("%,d", characters));
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + fileName);
         }
