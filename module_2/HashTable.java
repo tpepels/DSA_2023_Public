@@ -23,52 +23,99 @@ public class HashTable {
         }
     }
 
-    private static int INITIAL_SIZE = 16;
-    private HashEntry[] entries = new HashEntry[INITIAL_SIZE];
+    // We’ll keep track of the current capacity as an instance variable
+    // instead of relying on INITIAL_SIZE being final or static.
+    private int capacity = 16;
+    private HashEntry[] entries = new HashEntry[capacity];
 
+    /**
+     * Inserts a key-value pair into the hashtable.
+     */
     public void put(String key, int value) {
         // * The getHash method turns our string into a number
-        int hash = getHash(key);
+        int hash = getHash(key, capacity);
 
         final HashEntry hashEntry = new HashEntry(key, value);
 
         if (entries[hash] == null) {
             entries[hash] = hashEntry;
-        }
-        // If there is already an entry at current hash
-        // position, add entry to the
-        // * linked list *
-        else {
+        } else {
+            // If there is already an entry at current hash position,
+            // append new entry to the end of the linked list
             HashEntry temp = entries[hash];
             while (temp.next != null) {
                 temp = temp.next;
             }
             temp.next = hashEntry;
         }
+
+        // Optional: call grow() based on a load factor if desired, e.g.:
+        // if (currentSize / (double) capacity > 0.75) {
+        // grow();
+        // }
     }
 
     /**
-     * Returns 'null' if the element is not found.
+     * Returns the value for the given key, or -1 if not found.
      */
     public int get(String key) {
-        int hash = getHash(key);
+        int hash = getHash(key, capacity);
         if (entries[hash] != null) {
             HashEntry temp = entries[hash];
-
-            // Check the entry linked list for march
-            // for the given 'key'
-            while (!temp.key.equals(key) && temp.next != null) {
+            // Traverse the linked list to find matching key
+            while (temp != null) {
+                if (temp.key.equals(key)) {
+                    return temp.value;
+                }
                 temp = temp.next;
             }
-            return temp.value;
         }
-
-        return -1;
+        return -1; // Not found
     }
 
-    private int getHash(String key) {
-        // piggy backing on java string hashcode implementation.
-        return Math.abs(key.hashCode() % INITIAL_SIZE);
+    /**
+     * A helper method to hash a key against a given length (i.e., capacity).
+     */
+    private int getHash(String key, int length) {
+        return Math.abs(key.hashCode() % length);
+    }
+
+    /**
+     * This method grows (resizes) the hashtable by doubling its capacity
+     * and re-hashing all existing entries.
+     */
+    public void grow() {
+        int newCapacity = capacity * 2;
+        HashEntry[] newEntries = new HashEntry[newCapacity];
+
+        // Re-hash all existing entries into the new array
+        for (HashEntry entry : entries) {
+            HashEntry current = entry;
+            while (current != null) {
+                // Calculate new hash for the current entry using new capacity
+                int newHash = getHash(current.key, newCapacity);
+
+                // Create a new node to insert into newEntries
+                HashEntry newEntry = new HashEntry(current.key, current.value);
+                // If there’s no collision in the new table:
+                if (newEntries[newHash] == null) {
+                    newEntries[newHash] = newEntry;
+                } else {
+                    // Collisions: append to the end of the linked list
+                    HashEntry temp = newEntries[newHash];
+                    while (temp.next != null) {
+                        temp = temp.next;
+                    }
+                    temp.next = newEntry;
+                }
+                // Move to next in old linked list
+                current = current.next;
+            }
+        }
+
+        // Replace old entries array with the new one
+        entries = newEntries;
+        capacity = newCapacity;
     }
 
     @Override
@@ -126,7 +173,9 @@ public class HashTable {
                 "distort",
                 "horizon",
                 "flu",
-                "hair" };
+                "hair"
+        };
+
         // Put some key values.
         for (int i = 0; i < randomWords.length; i++) {
             hashTable.put(randomWords[i], randomWords[i].length());
@@ -135,6 +184,10 @@ public class HashTable {
         // Print the HashTable
         System.out.println(hashTable.toString());
         System.out.println("\nValue for key(produce) : " + hashTable.get("produce"));
-    }
 
+        // Call grow to demonstrate resizing.
+        hashTable.grow();
+        System.out.println("\n--- After grow() ---");
+        System.out.println(hashTable.toString());
+    }
 }
