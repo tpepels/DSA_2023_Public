@@ -1,6 +1,6 @@
 package module_2;
 
-public class Examples {
+public class ComplexityExamples {
 
     /**
      * Best case: O(1) (target is the first element)
@@ -13,6 +13,29 @@ public class Examples {
                 return i; // Target found
             }
         }
+        return -1; // Target not found
+    }
+
+    /**
+     * O(log n) time complexity (binary search)
+     * O(1) storage complexity
+     */
+    public static int binarySearch(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (array[mid] == target) {
+                return mid; // Target found
+            } else if (array[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
         return -1; // Target not found
     }
 
@@ -83,16 +106,17 @@ public class Examples {
 
         // i loop
         for (int i = 0; i < n; ++i) { // * n steps
+
             // j loop
             for (int j = 0; j < n; ++j) // * n^2 steps
                 System.out.println("j = " + j);
 
             // k loop
-            for (int k = 0; k < i; ++k) { // * 1 + 2 + ... + n (which is < n^2 in the j-loop)
+            for (int k = 0; k < i; ++k) { // * 1 + 2 + ... + n (which is < n^2 in the i-loop)
                 System.out.println("k = " + k);
 
                 // m loop
-                for (int m = 0; m < 100; ++m) // * 100 * n (which is < n^2 in the j-loop)
+                for (int m = 0; m < 100; ++m) // * 100 * n (which is < n^2 in the k-loop)
                     System.out.println("m = " + m);
             }
         }
@@ -156,28 +180,5 @@ public class Examples {
             }
         } // * total: k log n
 
-    }
-
-    /**
-     * O(log n) time complexity (binary search)
-     * O(1) storage complexity
-     */
-    public static int binarySearch(int[] array, int target) {
-        int left = 0;
-        int right = array.length - 1;
-
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-
-            if (array[mid] == target) {
-                return mid; // Target found
-            } else if (array[mid] < target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-
-        return -1; // Target not found
     }
 }
