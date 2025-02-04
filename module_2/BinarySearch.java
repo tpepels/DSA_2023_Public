@@ -49,6 +49,9 @@ public class BinarySearch {
     // 2. Worst case
     // 3. Testen met gesorteerde input
     public static void main(String[] args) {
+        // This clears the console (on most systems)
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         int nExperiments = 1000000;
         int nArrays = 20;
 
@@ -56,7 +59,7 @@ public class BinarySearch {
 
         Random r = new Random();
         long[] timings = new long[inputSizes.length];
-
+        System.out.println("Input size (n), Total Time (ms)");
         // Run the experiments
         for (int j = 0; j < inputSizes.length; j++) {
             int[][] randomArrays = new int[nArrays][];
@@ -82,22 +85,16 @@ public class BinarySearch {
                 // Select a random value from the random array
                 int toFind = array[r.nextInt(array.length)];
                 // Let's search!
-                // indexOfBrute(array, toFind);
-                indexOfBinSearch(array, toFind);
+                indexOfBrute(array, toFind);
+                // indexOfBinSearch(array, toFind);
             }
 
             long end = System.currentTimeMillis();
 
             long totTime = end - start;
             timings[j] = totTime;
-            System.out.println(inputSizes[j] + "," + totTime + "ms");
-        }
-        System.out.println();
-        /*
-         * Print just the timings to paste in excel
-         */
-        for (long time : timings) {
-            System.out.println(time);
+
+            System.out.println(inputSizes[j] + "," + totTime);
         }
         System.out.println();
     }

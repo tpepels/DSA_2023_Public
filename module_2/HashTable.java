@@ -142,6 +142,9 @@ public class HashTable {
     }
 
     public static void main(String[] args) {
+        // This clears the console (on most systems)
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         HashTable hashTable = new HashTable();
         String[] randomWords = {
                 "fragrant",

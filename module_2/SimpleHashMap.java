@@ -148,6 +148,9 @@ public class SimpleHashMap<K, V> {
      * A simple demonstration of the SimpleHashMap usage.
      */
     public static void main(String[] args) {
+        // This clears the console (on most systems)
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         // Example 1: Using String keys.
         SimpleHashMap<String, Integer> map = new SimpleHashMap<>();
         map.put("apple", 1);

@@ -40,6 +40,9 @@ public class SubSequence {
     }
 
     public static void main(String[] args) {
+        // This clears the console (on most systems)
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 
         String[][] S = { { "cc", "aa" }, { "bb", "aa" }, { "ee", "pp" } };
 
