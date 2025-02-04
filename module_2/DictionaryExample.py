@@ -3,7 +3,10 @@ fruit_prices = {
     'apple': 0.65,
     'banana': 0.35,
     'cherry': 0.20,
-    'date': 1.50
+    'date': 1.50,
+    "students": [
+        "student": "Tom"
+    ]
 }
 
 # Accessing the price of an apple

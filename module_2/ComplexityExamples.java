@@ -108,16 +108,17 @@ public class ComplexityExamples {
         for (int i = 0; i < n; ++i) { // * n steps
 
             // j loop
-            for (int j = 0; j < n; ++j) // * n^2 steps
+            for (int j = 0; j < n; j++) { // * n^2 steps
                 System.out.println("j = " + j);
 
-            // k loop
-            for (int k = 0; k < i; ++k) { // * 1 + 2 + ... + n (which is < n^2 in the i-loop)
-                System.out.println("k = " + k);
+                // k loop
+                for (int k = 0; k < j; ++k) { // * 1 + 2 + ... + n (which is < n^2 in the i-loop)
+                    System.out.println("k = " + k);
 
-                // m loop
-                for (int m = 0; m < 100; ++m) // * 100 * n (which is < n^2 in the k-loop)
-                    System.out.println("m = " + m);
+                    // m loop
+                    for (int m = 0; m < 100; ++m) // * 100 * n (which is < n^2 in the k-loop)
+                        System.out.println("m = " + m);
+                }
             }
         }
 
