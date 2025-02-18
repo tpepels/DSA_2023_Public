@@ -12,30 +12,13 @@ public class QuickSortDemo {
 
     // Quicksort method
     public static void quickSort(int[] arr, int low, int high) {
-        if (low < high) {
-            int pivotIndex = partition(arr, low, high);
-            quickSort(arr, low, pivotIndex - 1);
-            quickSort(arr, pivotIndex + 1, high);
-        }
+
     }
 
     // Partitioning: divides array into left (smaller than pivot) and right (greater
     // than pivot)
     private static int partition(int[] arr, int low, int high) {
-        int pivotIndex = low + (high - low) / 2;
-        int pivot = arr[pivotIndex];
-        // swap pivot to the end
-        swap(arr, pivotIndex, high);
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if (arr[j] < pivot) {
-                i++;
-                swap(arr, i, j);
-            }
-        }
-        // swap back the pivot
-        swap(arr, i + 1, high);
-        return i + 1;
+
     }
 
     // Helper method to swap two elements
