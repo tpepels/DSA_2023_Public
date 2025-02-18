@@ -1,4 +1,4 @@
-package module_4.live_coding;
+package module_4.live_coding.empty;
 
 import java.util.Arrays;
 
@@ -12,27 +12,13 @@ public class QuickSortDemo {
 
     // Quicksort method
     public static void quickSort(int[] arr, int low, int high) {
-        if (low < high) { // Base case: stop if low is not less than high
-            int pivotIndex = partition(arr, low, high); // Partition
-            quickSort(arr, low, pivotIndex - 1); // Sort left part
-            quickSort(arr, pivotIndex + 1, high); // Sort right part
-        }
+
     }
 
     // Partitioning: divides array into left (smaller than pivot) and right (greater
     // than pivot)
     private static int partition(int[] arr, int low, int high) {
-        int pivot = arr[high - low / 2]; // Choose middle element as pivot
-        int i = low - 1; // Index for smaller elements
 
-        for (int j = low; j < high; j++) {
-            if (arr[j] < pivot) { // Element must be left of pivot
-                i++;
-                swap(arr, i, j);
-            }
-        }
-        swap(arr, i + 1, high); // Put pivot in the correct place
-        return i + 1; // Return the pivot position
     }
 
     // Helper method to swap two elements
