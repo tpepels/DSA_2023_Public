@@ -22,7 +22,11 @@ public class QuickSortDemo {
     // Partitioning: divides array into left (smaller than pivot) and right (greater
     // than pivot)
     private static int partition(int[] arr, int low, int high) {
-        int pivot = arr[high - low / 2]; // Choose middle element as pivot
+        // int pivot = arr[high]; // Choose middle element as pivot
+        int mid = low + (high - low) / 2;
+        int pivot = arr[mid]; // Choose middle element as pivot
+        swap(arr, mid, high); // Move pivot to the end
+
         int i = low - 1; // Index for smaller elements
 
         for (int j = low; j < high; j++) {
