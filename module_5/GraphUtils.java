@@ -1,12 +1,12 @@
 package module_5;
 
-// import java.util.HashSet;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
 import java.util.HashMap;
 import java.util.LinkedList;
 // import java.util.Queue;
-// import java.util.Set;
+import java.util.Set;
 
 public class GraphUtils<T> {
     public static void main(String[] args) {
@@ -64,48 +64,51 @@ public class GraphUtils<T> {
         System.out.println("BFS");
         bfs(graph, "A");
 
-        System.out.println("DFS");
-        dfs(graph, "B");
+        System.out.println("Print All Paths");
+        printAllPaths(graph, "A", "E");
 
-        System.out.println("BFS");
-        bfs(graph, "B");
+        // System.out.println("DFS");
+        // dfs(graph, "B");
 
-        System.out.println(graph);
+        // System.out.println("BFS");
+        // bfs(graph, "B");
 
-        List<String> topologicalSort = topologicalSort(graph);
-        if (topologicalSort == null) {
-            System.out.println("The graph doesn't have a topological sort");
-        } else {
-            for (String s : topologicalSort) {
-                System.out.print(s + " - ");
-            }
-            System.out.println();
+        // System.out.println(graph);
 
-            if (isAcyclic(graph)) {
-                System.out.println("The graph is acyclic");
-            } else {
-                System.out.println("There is a cycle in the graph");
-            }
-        }
+        // List<String> topologicalSort = topologicalSort(graph);
+        // if (topologicalSort == null) {
+        //     System.out.println("The graph doesn't have a topological sort");
+        // } else {
+        //     for (String s : topologicalSort) {
+        //         System.out.print(s + " - ");
+        //     }
+        //     System.out.println();
 
-        graph.removeEdge("D", "B");
-        System.out.println(graph);
+        //     if (isAcyclic(graph)) {
+        //         System.out.println("The graph is acyclic");
+        //     } else {
+        //         System.out.println("There is a cycle in the graph");
+        //     }
+        // }
 
-        topologicalSort = topologicalSort(graph);
-        if (topologicalSort == null) {
-            System.out.println("The graph doesn't have a topological sort");
-        } else {
-            for (String s : topologicalSort) {
-                System.out.print(s + " - ");
-            }
-            System.out.println();
+        // graph.removeEdge("D", "B");
+        // System.out.println(graph);
 
-            if (isAcyclic(graph)) {
-                System.out.println("The graph is acyclic");
-            } else {
-                System.out.println("There is a cycle in the graph");
-            }
-        }
+        // topologicalSort = topologicalSort(graph);
+        // if (topologicalSort == null) {
+        //     System.out.println("The graph doesn't have a topological sort");
+        // } else {
+        //     for (String s : topologicalSort) {
+        //         System.out.print(s + " - ");
+        //     }
+        //     System.out.println();
+
+        //     if (isAcyclic(graph)) {
+        //         System.out.println("The graph is acyclic");
+        //     } else {
+        //         System.out.println("There is a cycle in the graph");
+        //     }
+        // }
     }
 
     public static <T> List<T> dfs(Graph<T> graph, T start) {
@@ -123,6 +126,25 @@ public class GraphUtils<T> {
                 dfs_visit(graph, neighbor, visited);
             }
         }
+    }
+
+    public static <T> void printAllPaths(Graph<T> graph, T start, T end) {
+        List<T> path = new LinkedList<T>();
+        printAllPaths(graph, start, end, path);
+        System.out.println();
+    }
+
+    public static <T> void printAllPaths(Graph<T> graph, T start, T end, List<T> path) {
+        path.add(start);
+        if(start.equals(end)){
+            System.out.println(path);
+        }
+        for (T neighbor : graph.neighbors(start)) {
+            if (!path.contains(neighbor)) {
+                printAllPaths(graph, neighbor, end, path);
+            }
+        }
+        path.remove(start);
     }
 
     public static <T> List<T> bfs(Graph<T> graph, T start) {

@@ -127,4 +127,10 @@ public class AdjacencyListGraph<T> implements Graph<T> {
         return new LinkedList<T>(verteces.keySet());
     }
 
+    @Override
+    public void addEdge(T x, T y, int weight) {
+        // This implementatio is for a non weighted graph, so we ignore the weights
+        addEdge(x, y);
+    }
+
 }
