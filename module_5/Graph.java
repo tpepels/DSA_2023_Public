@@ -43,6 +43,15 @@ public interface Graph<T> {
     public void addEdge(T x, T y);
 
     /**
+     * Adds an edge from the vertices x to y with weight specified
+     * 
+     * @param x
+     * @param y
+     * @param weight
+     */
+    public void addEdge(T x, T y, int weight);
+
+    /**
      * Removes the edge from the vertices x to y
      * 
      * @param x
@@ -50,7 +59,11 @@ public interface Graph<T> {
      */
     public void removeEdge(T x, T y);
 
-    public Graph<T> clone();
-
+    /**
+     * Return the list of verteces in the graph
+     * @return
+     */
     public List<T> getVertecesList();
+
+    public Graph<T> clone();
 }
