@@ -11,7 +11,8 @@ public class BoyerMooreStringSearch {
      */
     public static void search(String text, String pattern) {
         int comparisons = 0; // Counter for the number of comparisons
-        int[] badChar = buildBadCharTable(pattern);
+        int[] lastOcc = lastOccurrence(pattern);
+        printLastOccurrenceTable(pattern, lastOcc);
 
         int shift = 0; // The amount by which the pattern is shifted
         while (shift <= (text.length() - pattern.length())) {
@@ -26,49 +27,43 @@ public class BoyerMooreStringSearch {
 
             if (j < 0) {
                 System.out.println("Pattern occurs at shift = " + shift);
-                // Shift the pattern so that the next character in text aligns with the last
-                // occurrence of it in pattern.
-                // This calculation simulates the effect of the bad character heuristic.
                 shift += (shift + pattern.length() < text.length())
-                        ? pattern.length() - badChar[text.charAt(shift + pattern.length())]
+                        ? pattern.length() - lastOcc[text.charAt(shift + pattern.length())]
                         : 1;
             } else {
-                // Shift the pattern so that the bad character in text aligns with the last
-                // occurrence of it in pattern.
-                int badCharShift = Math.max(1, j - badChar[text.charAt(shift + j)]);
-                shift += badCharShift;
-                comparisons++; // Count this as a comparison
+                shift += Math.max(1, j - lastOcc[text.charAt(shift + j)]);
             }
+            comparisons++;
         }
         System.out.println("Total comparisons made: " + comparisons);
     }
 
     /**
-     * Builds the bad character table; an array where the value at each index
-     * corresponding
-     * to a character is the last index of that character in the pattern, or -1 if
-     * not present.
+     * Builds the last occurrence table, where each index corresponding to a
+     * character
+     * stores the last index of that character in the pattern, or -1 if not present.
      *
-     * @param pattern The pattern for which to build the bad character table.
-     * @return The bad character table.
+     * @param pattern The pattern for which to build the last occurrence table.
+     * @return The last occurrence table.
      */
-    private static int[] buildBadCharTable(String pattern) {
-        int[] badChar = new int[256]; // Supports Extended ASCII
+    private static int[] lastOccurrence(String pattern) {
+        int[] lastOcc = new int[256]; // Supports Extended ASCII
+
+        // Initialize all occurrences as -1
         for (int i = 0; i < 256; i++) {
-            badChar[i] = -1; // Initialize all occurrences as -1
-        }
-        for (int i = 0; i < pattern.length(); i++) {
-            badChar[(int) pattern.charAt(i)] = i; // Set the index of the character in pattern
-        }
-        // Print the bad character table
-        System.out.println("Bad character table: ");
-        for (int i = 0; i < 256; i++) {
-            if (badChar[i] != -1) {
-                System.out.println((char) i + " -> " + badChar[i]);
-            }
+            lastOcc[i] = pattern.lastIndexOf((char) i);
         }
 
-        return badChar;
+        return lastOcc;
+    }
+
+    private static void printLastOccurrenceTable(int[] lastOcc) {
+        System.out.println("Last occurrence table:");
+        for (int i = 0; i < 256; i++) {
+            if (lastOcc[i] != -1) {
+                System.out.println((char) i + " -> " + lastOcc[i]);
+            }
+        }
     }
 
     public static void main(String[] args) {
