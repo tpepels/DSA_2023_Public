@@ -1,6 +1,6 @@
 package string_search;
 
-public class BruteForceStringSearch {
+public class NaiveExample {
 
     /**
      * Searches for occurrences of a pattern within a text using brute force.

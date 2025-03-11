@@ -1,6 +1,6 @@
 package string_search;
 
-public class BoyerMooreStringSearch {
+public class BoyerMooreExample {
 
     /**
      * Searches for occurrences of a pattern within a text using the Boyer-Moore
@@ -12,29 +12,31 @@ public class BoyerMooreStringSearch {
     public static void search(String text, String pattern) {
         int comparisons = 0; // Counter for the number of comparisons
         int[] lastOcc = lastOccurrence(pattern);
-        printLastOccurrenceTable(pattern, lastOcc);
+        printLastOccurrenceTable(lastOcc);
 
-        int shift = 0; // The amount by which the pattern is shifted
-        while (shift <= (text.length() - pattern.length())) {
+        int i = 0; // The amount by which the pattern is shifted
+
+        while (i <= (text.length() - pattern.length())) {
             int j = pattern.length() - 1;
 
-            // Keep reducing index j of pattern while characters of pattern and text are
-            // matching at this shift
-            while (j >= 0 && pattern.charAt(j) == text.charAt(shift + j)) {
+            // Match pattern with text from right to left
+            while (j >= 0 && pattern.charAt(j) == text.charAt(i + j)) {
                 j--;
-                comparisons++; // Count this as a comparison
+                comparisons++;
             }
 
             if (j < 0) {
-                System.out.println("Pattern occurs at shift = " + shift);
-                shift += (shift + pattern.length() < text.length())
-                        ? pattern.length() - lastOcc[text.charAt(shift + pattern.length())]
-                        : 1;
-            } else {
-                shift += Math.max(1, j - lastOcc[text.charAt(shift + j)]);
+                System.out.println("Pattern occurs at index = " + i);
+                System.out.println("Total comparisons made: " + comparisons);
+                return; // Stop searching after the first occurrence
             }
+
+            // Shift based on the last occurrence heuristic
+            i += Math.max(1, j - lastOcc[text.charAt(i + j)]);
             comparisons++;
         }
+
+        System.out.println("Pattern not found.");
         System.out.println("Total comparisons made: " + comparisons);
     }
 

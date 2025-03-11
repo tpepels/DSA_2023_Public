@@ -1,6 +1,6 @@
 package string_search;
 
-public class KMPStringMatching {
+public class KMPExample {
 
     /**
      * Searches for occurrences of a pattern within a text.

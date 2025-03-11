@@ -3,7 +3,7 @@ package trie_app;
 import java.util.ArrayList;
 import java.util.List;
 
-class ExtendedTrie extends Trie {
+class ExtendedTrie extends TrieExample {
 
     // Constructor
     public ExtendedTrie() {

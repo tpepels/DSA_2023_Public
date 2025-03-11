@@ -3,10 +3,10 @@ package trie_app;
 import java.util.ArrayList;
 import java.util.List;
 
-class ExtendedTrie extends Trie {
+class ExtendedTrieExample extends Trie {
 
     // Constructor
-    public ExtendedTrie() {
+    public ExtendedTrieExample() {
         super();
     }
 

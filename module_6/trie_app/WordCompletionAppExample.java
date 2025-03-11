@@ -5,11 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
-public class WordCompletionApp {
+public class WordCompletionAppExample {
 
     public static void main(String[] args) {
-        ExtendedTrie trie = new ExtendedTrie();
-        loadWordsIntoTrie(trie, "module_6/words.txt");
+        ExtendedTrieExample trie = new ExtendedTrieExample();
+        // This path is relative to the project root directory, you may have to change
+        // it based on your project structure
+        loadWordsIntoTrie(trie, "words.txt");
         // Print the number of nodes in the trie
         System.out.println("Number of nodes in the trie: " + String.format("%,d", trie.size()));
         Scanner scanner = new Scanner(System.in);
@@ -39,7 +41,7 @@ public class WordCompletionApp {
         scanner.close();
     }
 
-    private static void loadWordsIntoTrie(ExtendedTrie trie, String fileName) {
+    private static void loadWordsIntoTrie(ExtendedTrieExample trie, String fileName) {
         int lines = 0, characters = 0;
         try {
             Scanner fileScanner = new Scanner(new File(fileName));

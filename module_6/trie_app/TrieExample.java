@@ -4,7 +4,7 @@ package trie_app;
  * The Trie class represents a trie (prefix tree) data structure
  * that provides efficient storage and retrieval of strings.
  */
-public class Trie {
+public class TrieExample {
     /**
      * The root node of the trie.
      */
@@ -14,7 +14,7 @@ public class Trie {
     /**
      * Constructor that initializes the trie with a root node.
      */
-    public Trie() {
+    public TrieExample() {
         root = new TrieNode();
         size = 0;
     }
