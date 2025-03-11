@@ -15,7 +15,6 @@ public class KMPExample {
 
         int j = 0; // Index for pattern[]
 
-        // Start searching for the pattern in the text
         for (int i = 0; i < text.length(); i++) {
             while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
                 j = lps[j - 1];
@@ -27,12 +26,15 @@ public class KMPExample {
             }
             if (j == pattern.length()) {
                 System.out.println("Found pattern at index " + (i - j + 1));
-                j = lps[j - 1];
+                System.out.println("Total comparisons made: " + comparisons);
+                return; // Stop searching after the first occurrence
             }
         }
+    }
 
-        // Print the total number of comparisons made
-        System.out.println("Total comparisons made: " + comparisons);
+    // Print the total number of comparisons made
+    System.out.println("Total comparisons made: "+comparisons);
+
     }
 
     /**

@@ -8,10 +8,23 @@ class Activity {
         this.start = start;
         this.end = end;
     }
+
 }
 
 public class ActivitySelection {
     public static void selectActivities(Activity[] activities) {
+        // Step 1: Sort the activities by their end time
+        Arrays.sort(activities, Comparator.comparingInt(a -> a.end));
+
+        System.out.println("Selected activities are: ");
+        // Step 2: Select the first activity
+        int lastEndtime = 0;
+        for (Activity activity : activities) {
+            if (activity.start >= lastEndtime) {
+                System.out.println("[" + activity.start + ", " + activity.end + "]");
+                lastEndtime = activity.end;
+            }
+        }
 
     }
 

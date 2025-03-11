@@ -9,30 +9,7 @@ public class KMPStringMatching {
      * @param pattern The pattern to search for.
      */
     public static void search(String text, String pattern) {
-        int comparisons = 0; // Counter for the number of comparisons
-        int[] lps = computeLPSArray(pattern); // Preprocess the pattern
-        printLPSArray(lps, pattern);
 
-        int j = 0; // Index for pattern[]
-
-        // Start searching for the pattern in the text
-        for (int i = 0; i < text.length(); i++) {
-            while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
-                j = lps[j - 1];
-                comparisons++; // Count this as a comparison
-            }
-            if (text.charAt(i) == pattern.charAt(j)) {
-                j++;
-                comparisons++; // Count this as a comparison
-            }
-            if (j == pattern.length()) {
-                System.out.println("Found pattern at index " + (i - j + 1));
-                j = lps[j - 1];
-            }
-        }
-
-        // Print the total number of comparisons made
-        System.out.println("Total comparisons made: " + comparisons);
     }
 
     /**
@@ -42,20 +19,7 @@ public class KMPStringMatching {
      * @return The LPS array.
      */
     private static int[] computeLPSArray(String pattern) {
-        int[] lps = new int[pattern.length()];
-        int len = 0; // Length of the previous longest prefix suffix
 
-        for (int i = 1; i < pattern.length(); i++) {
-            while (len > 0 && pattern.charAt(i) != pattern.charAt(len)) {
-                len = lps[len - 1]; // Backtrack to the last known LPS
-            }
-            if (pattern.charAt(i) == pattern.charAt(len)) {
-                lps[i] = ++len; // Extend LPS if characters match
-            } else {
-                lps[i] = 0; // No LPS match at this index
-            }
-        }
-        return lps;
     }
 
     private static void printLPSArray(int[] lps, String pattern) {

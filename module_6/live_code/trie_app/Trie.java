@@ -25,6 +25,16 @@ public class Trie {
      * @param word The word to insert into the trie.
      */
     public void insert(String word) {
+        TrieNode current = root;
+        for (char c : word.toCharArray()) {
+            if (current.children[c - 'a'] == null) {
+                current.children[c - 'a'] = new TrieNode();
+                size++;
+            }
+            current = current.children[c - 'a'];
+            current.passingWords++;
+        }
+        current.isEndOfWord = true;
 
     }
 
@@ -35,7 +45,14 @@ public class Trie {
      * @return True if the word is found, false otherwise.
      */
     public boolean search(String word) {
-
+        TrieNode current = root;
+        for (char c : word.toCharArray()) {
+            if (current.children[c - 'a'] == null) {
+                return false;
+            }
+            current = current.children[c - 'a'];
+        }
+        return current.isEndOfWord;
     }
 
     /**
@@ -46,7 +63,14 @@ public class Trie {
      *         false otherwise.
      */
     public boolean startsWith(String prefix) {
-
+        TrieNode current = root;
+        for (char c : prefix.toCharArray()) {
+            if (current.children[c - 'a'] == null) {
+                return false;
+            }
+            current = current.children[c - 'a'];
+        }
+        return true;
     }
 
     public int size() {
@@ -55,5 +79,22 @@ public class Trie {
 }
 
 class TrieNode {
+    /**
+     * The number of children of the node.
+     */
+    protected static final int ALPHABET_SIZE = 26;
+
+    /**
+     * The children of the node.
+     */
+    protected TrieNode[] children = new TrieNode[ALPHABET_SIZE];
+    boolean isEndOfWord;
+
+    int passingWords = 0;
+
+    public TrieNode() {
+        isEndOfWord = false;
+
+    }
 
 }

@@ -10,7 +10,7 @@ public class SkippingProblemExample {
 
         int[] dp = new int[steps.length];
         dp[0] = steps[0];
-        dp[1] = Math.min(steps[0], steps[1]);
+        dp[1] = Math.min(steps[0], steps[1] + steps[0]);
 
         for (int i = 2; i < steps.length; i++) {
             dp[i] = steps[i] + Math.min(dp[i - 1], dp[i - 2]);
