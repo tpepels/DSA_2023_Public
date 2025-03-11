@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class SkippingProblem {
     public static int minimizeTotalCost(int[] steps) {
-
+        return -10;
     }
 
     public static void main(String[] args) {

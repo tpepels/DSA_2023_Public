@@ -30,6 +30,7 @@ class ExtendedTrie extends Trie {
         if (node.isEndOfWord) {
             words.add(currentWord);
         }
+
         for (char c = 'a'; c <= 'z'; c++) {
             if (node.children[c - 'a'] != null) {
                 findAllWordsFromNode(node.children[c - 'a'], words, currentWord + c);

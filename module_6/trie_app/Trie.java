@@ -76,14 +76,14 @@ public class Trie {
         TrieNode node = root;
         for (char c : prefix.toCharArray()) {
             // If the child node for the current character doesn't exist, no word starts
-            // with this prefix
+            // with the given prefix
             if (node.children[c - 'a'] == null) {
                 return false;
             }
             // Move to the child node
             node = node.children[c - 'a'];
         }
-        // If we reach this point, it means we've found the prefix in the trie
+        // Return true since there is at least one word starting with the given prefix
         return true;
     }
 
@@ -93,9 +93,9 @@ public class Trie {
 }
 
 class TrieNode {
-    TrieNode[] children = new TrieNode[26]; // Assuming lowercase English letters
-    boolean isEndOfWord;
-    int passingWords; // Counts the number of words that pass through this node
+    public TrieNode[] children = new TrieNode[26]; // Assuming lowercase English letters
+    public boolean isEndOfWord;
+    public int passingWords; // Counts the number of words that pass through this node
 
     TrieNode() {
         isEndOfWord = false;

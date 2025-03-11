@@ -1,11 +1,30 @@
 import java.util.Arrays;
 
-public class DPGoldMine {
+public class DPGoldMineMemoize {
 
     static int recursions = 0;
 
     private static int collect(int[][] mine, int r, int c, int n, int m, int[][] dp) {
         recursions++;
+
+        // Base condition: Out of grid bounds
+        if (r < 0 || r >= n || c >= m) {
+            return 0;
+        }
+
+        // If best answer already known, return stored result
+        if (dp[r][c] != -1) {
+            return dp[r][c];
+        }
+
+        // Recursive calls for three possible moves
+        int upperDiagonal = collect(mine, r - 1, c + 1, n, m, dp); // ↗
+        int straight = collect(mine, r, c + 1, n, m, dp); // →
+        int lowerDiagonal = collect(mine, r + 1, c + 1, n, m, dp); // ↘
+
+        // Store best answer in dp matrix
+        dp[r][c] = mine[r][c] + Math.max(Math.max(upperDiagonal, straight), lowerDiagonal);
+        return dp[r][c];
     }
 
     public static int maxGoldCollected(int[][] mine, int n, int m, int startRow) {
