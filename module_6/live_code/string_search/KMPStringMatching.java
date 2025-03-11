@@ -19,7 +19,20 @@ public class KMPStringMatching {
      * @return The LPS array.
      */
     private static int[] computeLPSArray(String pattern) {
-
+        // Create the LPS array
+        int[] lps = new int[pattern.length()];
+        lps[0] = 0;
+        int j = 0;
+        for (int i = 1; i < pattern.length(); i++) {
+            while (i > 0 && pattern.charAt(i) != pattern.charAt(j)) {
+                i = lps[i - 1];
+            }
+            if (pattern.charAt(i) == pattern.charAt(j)) {
+                lps[i] = ++j;
+            } else {
+                lps[i] = 0;
+            }
+        }
     }
 
     private static void printLPSArray(int[] lps, String pattern) {

@@ -10,7 +10,27 @@ public class BoyerMooreStringSearch {
      * @param pattern The pattern to search for.
      */
     public static void search(String text, String pattern) {
+        int comparisonCount = 0;
+        int[] lastOcc = lastOccurrence(pattern);
+        printLastOccurrenceTable(lastOcc);
+        int i = 0;
+        while (i <= (text.length() - pattern.length())) {
+            int j = pattern.length() - 1;
 
+            while (j >= 0 && text.charAt(j + i) == pattern.charAt(j)) {
+
+                comparisonCount++;
+                j--;
+            }
+            if (j < 0) {
+                System.err.println("Pattern found at index " + i + " after " + comparisonCount + " comparisons.");
+                return;
+            } else {
+                int shift = j - lastOcc[text.charAt(j + i)];
+                i += shift > 0 ? shift : pattern.length();
+            }
+        }
+        System.out.println("Pattern not found after " + comparisonCount + " comparisons.");
     }
 
     /**
@@ -22,7 +42,11 @@ public class BoyerMooreStringSearch {
      * @return The last occurrence table.
      */
     private static int[] lastOccurrence(String pattern) {
-
+        int[] lastOcc = new int[256];
+        for (int i = 0; i < 256; i++) {
+            lastOcc[i] = pattern.lastIndexOf((char) i);
+        }
+        return lastOcc;
     }
 
     /**
