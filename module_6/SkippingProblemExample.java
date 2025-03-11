@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
-public class SkippingProblem {
-    public static int minimizeTotalCost(int[] steps) {
+public class SkippingProblemExample {
+    public static int minTotalCost(int[] steps) {
         if (steps == null || steps.length == 0)
             return 0;
 
@@ -23,9 +23,9 @@ public class SkippingProblem {
 
     public static void main(String[] args) {
         int[] steps = { 1, 2, 3, 1, 5, 1, 2, 1 };
-        System.out.println("Minimum Total Cost: " + minimizeTotalCost(steps));
+        System.out.println("Minimum Total Cost: " + minTotalCost(steps));
 
         int[] steps_2 = { 6, 2, 3, 8, 1, 2, 2, 1 };
-        System.out.println("Minimum Total Cost: " + minimizeTotalCost(steps_2));
+        System.out.println("Minimum Total Cost: " + minTotalCost(steps_2));
     }
 }

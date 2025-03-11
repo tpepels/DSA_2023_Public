@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class DPGoldMineMemoize {
+public class DPGoldMineMemoizeExample {
 
     static int recursions = 0;
 

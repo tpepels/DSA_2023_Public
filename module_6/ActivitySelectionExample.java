@@ -10,7 +10,7 @@ class Activity {
     }
 }
 
-public class ActivitySelection {
+public class ActivitySelectionExample {
     public static void selectActivities(Activity[] activities) {
         // Step 1: Sort activities by finish time
         Arrays.sort(activities, Comparator.comparingInt(a -> a.end));

@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class DPGoldMineTabulation {
+public class DPGoldMineTabulationExample {
 
     public static int maxGoldCollected(int[][] mine, int n, int m) {
         if (n == 0 || m == 0) {
