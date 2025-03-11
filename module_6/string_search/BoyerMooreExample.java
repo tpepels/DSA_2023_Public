@@ -18,9 +18,10 @@ public class BoyerMooreExample {
 
         while (i <= (text.length() - pattern.length())) {
             int j = pattern.length() - 1;
+            int ij = i + j; // The index in the text to which we are comparing the pattern
 
             // Match pattern with text from right to left
-            while (j >= 0 && pattern.charAt(j) == text.charAt(i + j)) {
+            while (j >= 0 && pattern.charAt(j) == text.charAt(ij)) {
                 j--;
                 comparisons++;
             }
@@ -32,7 +33,7 @@ public class BoyerMooreExample {
             }
 
             // Shift based on the last occurrence heuristic
-            i += Math.max(1, j - lastOcc[text.charAt(i + j)]);
+            i += Math.max(1, j - lastOcc[text.charAt(ij)]);
             comparisons++;
         }
 
