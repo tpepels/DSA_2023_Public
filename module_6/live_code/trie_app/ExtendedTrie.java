@@ -13,14 +13,14 @@ class ExtendedTrie extends Trie {
     // Method to fetch all words in the trie that start with the given prefix
     public List<String> getWordsWithPrefix(String prefix) {
         List<String> words = new ArrayList<>();
-        TrieNode node = root;
+        TrieNode current = root;
         for (char c : prefix.toCharArray()) {
-            if (node.children[c - 'a'] == null) {
+            if (current.children[c - 'a'] == null) {
                 return words;
             }
-            node = node.children[c - 'a'];
+            current = current.children[c - 'a'];
         }
-        findAllWordsFromNode(node, words, prefix);
+        findAllWordsFromNode(current, words, prefix);
         return words;
     }
 
@@ -29,8 +29,7 @@ class ExtendedTrie extends Trie {
         if (node.isEndOfWord) {
             words.add(currentWord);
         }
-        //
-        for (int i = 0; i < TrieNode.ALPHABET_SIZE; i++) {
+        for (int i = 0; i < 26; i++) {
             if (node.children[i] != null) {
                 findAllWordsFromNode(node.children[i], words, currentWord + (char) (i + 'a'));
             }

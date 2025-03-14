@@ -27,15 +27,15 @@ public class Trie {
     public void insert(String word) {
         TrieNode current = root;
         for (char c : word.toCharArray()) {
-            if (current.children[c - 'a'] == null) {
-                current.children[c - 'a'] = new TrieNode();
+            int index = c - 'a';
+            if (current.children[index] == null) {
+                current.children[index] = new TrieNode();
                 size++;
             }
-            current = current.children[c - 'a'];
+            current = current.children[index];
             current.passingWords++;
         }
         current.isEndOfWord = true;
-
     }
 
     /**
@@ -47,10 +47,11 @@ public class Trie {
     public boolean search(String word) {
         TrieNode current = root;
         for (char c : word.toCharArray()) {
-            if (current.children[c - 'a'] == null) {
+            int index = c - 'a';
+            if (current.children[index] == null) {
                 return false;
             }
-            current = current.children[c - 'a'];
+            current = current.children[index];
         }
         return current.isEndOfWord;
     }
@@ -65,10 +66,11 @@ public class Trie {
     public boolean startsWith(String prefix) {
         TrieNode current = root;
         for (char c : prefix.toCharArray()) {
-            if (current.children[c - 'a'] == null) {
+            int index = c - 'a';
+            if (current.children[index] == null) {
                 return false;
             }
-            current = current.children[c - 'a'];
+            current = current.children[index];
         }
         return true;
     }
@@ -79,22 +81,10 @@ public class Trie {
 }
 
 class TrieNode {
-    /**
-     * The number of children of the node.
-     */
-    protected static final int ALPHABET_SIZE = 26;
 
-    /**
-     * The children of the node.
-     */
-    protected TrieNode[] children = new TrieNode[ALPHABET_SIZE];
-    boolean isEndOfWord;
-
+    final int ALPHABET_SIZE = 26;
+    TrieNode[] children = new TrieNode[ALPHABET_SIZE];
+    boolean isEndOfWord = false;
     int passingWords = 0;
-
-    public TrieNode() {
-        isEndOfWord = false;
-
-    }
 
 }

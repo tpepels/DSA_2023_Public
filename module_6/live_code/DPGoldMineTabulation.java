@@ -11,22 +11,23 @@ public class DPGoldMineTabulation {
 
         for (int col = m - 2; col >= 0; col--) {
             for (int row = 0; row < n; row++) {
-                // right move
                 int right = dp[row][col + 1];
-                // Right-up diagonal
-                int rightUp = (row > 0) ? dp[row - 1][col + 1] : 0;
-                // Right-down diagonal
-                int rightDown = (row < n - 1) ? dp[row + 1][col + 1] : 0;
-
+                int rightUp = (row - 1 >= 0) ? dp[row - 1][col + 1] : 0;
+                int rightDown = (row + 1 < n) ? dp[row + 1][col + 1] : 0;
                 dp[row][col] = mine[row][col] + Math.max(right, Math.max(rightUp, rightDown));
             }
         }
 
-        System.out.println("DP Table: ");
-        for (int[] row : dp) {
-            System.out.println(Arrays.toString(row));
+        int maxGold = 0;
+        for (int i = 0; i < n; i++) {
+            maxGold = Math.max(maxGold, dp[i][0]);
         }
-        return 0;
+
+        // print the dp table
+        for (int i = 0; i < n; i++) {
+            System.out.println(Arrays.toString(dp[i]));
+        }
+        return maxGold;
     }
 
     public static void main(String[] args) {

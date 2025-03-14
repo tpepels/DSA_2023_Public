@@ -27,14 +27,19 @@ public class SkippingProblemExample {
 
         int[] steps_2 = { 1, 2 };
         System.out.println("Minimum Total Cost: " + minTotalCost(steps_2));
+
         int[] steps_3 = { 1, 2, 3 };
         System.out.println("Minimum Total Cost: " + minTotalCost(steps_3));
+
         int[] steps_4 = { 1, 2, 3, 1 };
         System.out.println("Minimum Total Cost: " + minTotalCost(steps_4));
+
         int[] steps_5 = { 1, 2, 3, 1, 5 };
         System.out.println("Minimum Total Cost: " + minTotalCost(steps_5));
+
         int[] steps_6 = { 1, 2, 3, 1, 5, 1 };
         System.out.println("Minimum Total Cost: " + minTotalCost(steps_6));
+
         int[] steps_7 = { 1, 2, 3, 1, 5, 1, 2 };
         System.out.println("Minimum Total Cost: " + minTotalCost(steps_7));
         System.out.println("Final solution:");

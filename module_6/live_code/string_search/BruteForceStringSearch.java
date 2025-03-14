@@ -11,22 +11,21 @@ public class BruteForceStringSearch {
      *         text, or -1 if not found.
      */
     public static int search(String text, String pattern) {
-        int comparisonCount = 0;
-
+        int comparisons = 0;
         for (int i = 0; i <= text.length() - pattern.length(); i++) {
-            int j = 0; // Index into the pattern
+            int j = 0;
             for (j = 0; j < pattern.length(); j++) {
-                comparisonCount++;
+                comparisons++;
                 if (text.charAt(i + j) != pattern.charAt(j)) {
                     break;
                 }
             }
             if (j == pattern.length()) {
-                System.err.println("Pattern found at index " + i + " after " + comparisonCount + " comparisons.");
+                System.out.println("Comparisons: " + comparisons);
+                System.out.println("Found at index: " + i);
                 return i;
             }
         }
-        System.out.println("Pattern not found after " + comparisonCount + " comparisons.");
         return -1;
     }
 

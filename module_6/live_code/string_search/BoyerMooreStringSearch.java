@@ -13,24 +13,27 @@ public class BoyerMooreStringSearch {
         int comparisonCount = 0;
         int[] lastOcc = lastOccurrence(pattern);
         printLastOccurrenceTable(lastOcc);
+
         int i = 0;
-        while (i <= (text.length() - pattern.length())) {
+        while (i <= text.length() - pattern.length()) {
             int j = pattern.length() - 1;
-
-            while (j >= 0 && text.charAt(j + i) == pattern.charAt(j)) {
-
-                comparisonCount++;
+            while (j >= 0 && pattern.charAt(j) == text.charAt(i + j)) {
                 j--;
+                comparisonCount++;
             }
-            if (j < 0) {
-                System.err.println("Pattern found at index " + i + " after " + comparisonCount + " comparisons.");
-                return;
+            if (j <= 0) {
+                System.out.println("Pattern found at index " + i);
+                i++;
             } else {
-                int shift = j - lastOcc[text.charAt(j + i)];
-                i += shift > 0 ? shift : pattern.length();
+                // Shift based on the last occurrence heuristic
+                if (lastOcc[text.charAt(i + j)] == -1) {
+                    i += pattern.length() - j;
+                } else {
+                    i += j - lastOcc[text.charAt(i + j)];
+                }
             }
         }
-        System.out.println("Pattern not found after " + comparisonCount + " comparisons.");
+        System.out.println("Total comparisons: " + comparisonCount);
     }
 
     /**
